@@ -67,9 +67,9 @@ Causa comment: ''!
 cierreCausa
 fechaCierre:= Date today.
 sentencia:= MessageBox confirm: '¿El fallo fue favorable?'.
-sentencia 
-ifTrue: [montoObt := self Monto]
-ifFalse: [montoObt := (self Monto * 0.8)].!
+(sentencia) ifTrue: [montoObt := self Monto, MessageBox notify: 'Recibe el monto total'] 
+ifFalse: [montoObt := (self Monto * 0.8), MessageBox notify: 'Recibe el 20% del monto total'].
+!
 
 inicioCausa
 | per |
@@ -87,7 +87,7 @@ fuero:= Prompter prompt: 'Ingrese el fuero de la causa'.
 detalle := Prompter prompt: 'Ingrese el detalle de la demanda'.!
 
 Monto
-^50
+^50000
 ! !
 !Causa categoriesForMethods!
 cierreCausa!public! !
@@ -138,17 +138,15 @@ Abogado comment: ''!
 !Abogado categoriesForClass!Unclassified! !
 !Abogado methodsFor!
 
-calcMonto!
-
-calcPorcentaje!
-
-cargaDatos!
+cargaDatos
+fuero := Prompter prompt:'ingrese el fuero'.
+id := Prompter prompt:'ingrese el id' asNumber.
+"asignar causas, seria una funcion que te permita ver el listado de causas y asignarlas al abogado
+causas:= asignarCausa "!
 
 inicializaCausa
 causas := OrderedCollection new.! !
 !Abogado categoriesForMethods!
-calcMonto!public! !
-calcPorcentaje!public! !
 cargaDatos!public! !
 inicializaCausa!public! !
 !
